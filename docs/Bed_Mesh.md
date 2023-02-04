@@ -24,9 +24,9 @@ bed and a probe with an x-offset of 24 mm and y-offset of 5 mm.
 [bed_mesh]
 speed: 120
 horizontal_move_z: 5
-mesh_min: 35,6
+mesh_min: 35, 6
 mesh_max: 240, 198
-probe_count: 5,3
+probe_count: 5, 3
 ```
 
 - `speed: 120`\
@@ -37,21 +37,21 @@ probe_count: 5,3
   _Default Value: 5_\
   The Z coordinate the probe rises to prior to traveling between points.
 
-- `mesh_min: 35,6`\
+- `mesh_min: 35, 6`\
   _Required_\
   The first probed coordinate, nearest to the origin.  This coordinate
   is relative to the probe's location.
 
-- `mesh_max: 240,198`\
+- `mesh_max: 240, 198`\
   _Required_\
   The probed coordinate farthest farthest from the origin.  This is not
   necessarily the last point probed, as the probing process occurs in a
   zig-zag fashion.  As with `mesh_min`, this coordiante is relative to
   the probe's location.
 
-- `probe_count: 5,3`\
-  _Default Value: 3,3_\
-  The number of points to probe on each axis, specified as x,y integer
+- `probe_count: 5, 3`\
+  _Default Value: 3, 3_\
+  The number of points to probe on each axis, specified as X, Y integer
   values.  In this example 5 points will be probed along the X axis, with
   3 points along the Y axis, for a total of 15 probed points.  Note that
   if you wanted a square grid, for example 3x3, this could be specified
@@ -76,7 +76,7 @@ and 5 mm on Y.
 speed: 120
 horizontal_move_z: 5
 mesh_radius: 75
-mesh_origin: 0,0
+mesh_origin: 0, 0
 round_probe_count: 5
 ```
 
@@ -86,10 +86,10 @@ round_probe_count: 5
   that the probe's offsets limit the size of the mesh radius.  In this example,
   a radius larger than 76 would move the tool beyond the range of the printer.
 
-- `mesh_origin: 0,0`\
-  _Default Value: 0,0_\
+- `mesh_origin: 0, 0`\
+  _Default Value: 0, 0_\
   The center point of the mesh.  This coordinate is relative to the probe's
-  location. While the default is 0,0, it may be useful to adjust the origin
+  location. While the default is 0, 0, it may be useful to adjust the origin
   in an effort to probe a larger portion of the bed.  See the illustration
   below.
 
@@ -125,20 +125,20 @@ lagrange and bicubic interpolation to accomplish this.
 [bed_mesh]
 speed: 120
 horizontal_move_z: 5
-mesh_min: 35,6
+mesh_min: 35, 6
 mesh_max: 240, 198
-probe_count: 5,3
-mesh_pps: 2,3
+probe_count: 5, 3
+mesh_pps: 2, 3
 algorithm: bicubic
 bicubic_tension: 0.2
 ```
 
-- `mesh_pps: 2,3`\
-  _Default Value: 2,2_\
+- `mesh_pps: 2, 3`\
+  _Default Value: 2, 2_\
   The `mesh_pps` option is shorthand for Mesh Points Per Segment.  This
   option specifies how many points to interpolate for each segment along
-  the x and y axes.  Consider a 'segment' to be the space between each
-  probed point. Like `probe_count`, `mesh_pps` is specified as an x,y
+  the X and Y axes.  Consider a 'segment' to be the space between each
+  probed point. Like `probe_count`, `mesh_pps` is specified as an X, Y
   integer pair, and also may be specified a single integer that is applied
   to both axes.  In this example there are 4 segments along the X axis
   and 2 segments along the Y axis.  This evaluates to 8 interpolated
@@ -179,9 +179,9 @@ control the splitting behavior.
 [bed_mesh]
 speed: 120
 horizontal_move_z: 5
-mesh_min: 35,6
+mesh_min: 35, 6
 mesh_max: 240, 198
-probe_count: 5,3
+probe_count: 5, 3
 move_check_distance: 5
 split_delta_z: .025
 ```
@@ -225,9 +225,9 @@ As such, fade is disabled by default.
 [bed_mesh]
 speed: 120
 horizontal_move_z: 5
-mesh_min: 35,6
+mesh_min: 35, 6
 mesh_max: 240, 198
-probe_count: 5,3
+probe_count: 5, 3
 fade_start: 1
 fade_end: 10
 fade_target: 0
@@ -255,8 +255,8 @@ fade_target: 0
   example,  lets assume your homing position on the bed is an outlier, its
   .2 mm lower than the average probed height of the bed.  If the `fade_target`
   is 0, fade will shrink the print by an average of .2 mm across the bed.  By
-  setting the `fade_target` to .2, the homed area will expand by .2 mm, however
-  the rest of the bed will have an accurately sized.  Generally its a good idea
+  setting the `fade_target` to .2, the homed area will expand by .2 mm, however,
+  the rest of the bed will be accurately sized.  Generally its a good idea
   to leave `fade_target` out of the configuration so the average height of the
   mesh is used, however it may be desirable to manually adjust the fade target
   if one wants to print on a specific portion of the bed.
@@ -273,9 +273,9 @@ These printers can benefit from configuring the relative reference index.
 [bed_mesh]
 speed: 120
 horizontal_move_z: 5
-mesh_min: 35,6
+mesh_min: 35, 6
 mesh_max: 240, 198
-probe_count: 5,3
+probe_count: 5, 3
 relative_reference_index: 7
 ```
 
@@ -314,9 +314,9 @@ will be averaged and inserted in the mesh as the Z value at the generated
 [bed_mesh]
 speed: 120
 horizontal_move_z: 5
-mesh_min: 35,6
+mesh_min: 35, 6
 mesh_max: 240, 198
-probe_count: 5,3
+probe_count: 5, 3
 faulty_region_1_min: 130.0, 0.0
 faulty_region_1_max: 145.0, 40.0
 faulty_region_2_min: 225.0, 0.0
@@ -398,6 +398,26 @@ is not desirable the _default_ profile can be removed as follows:
 
 Any other saved profile can be removed in the same fashion, replacing
 _default_ with the named profile you wish to remove.
+
+
+#### Loading the default profile
+
+Previous versions of `bed_mesh` always loaded the profile named _default_
+on startup if it was present.  This behavior has been removed in favor of
+allowing the user to determine when a profile is loaded.  If a user wishes to
+load the `default` profile it is recommended to add
+`BED_MESH_PROFILE LOAD=default` to either their `START_PRINT` macro or their
+slicer's "Start G-Code" configuration, whichever is applicable.
+
+Alternatively the old behavior of loading a profile at startup can be
+restored with a `[delayed_gcode]`:
+
+```ini
+[delayed_gcode bed_mesh_init]
+initial_duration: .01
+gcode:
+  BED_MESH_PROFILE LOAD=default
+```
 
 ### Output
 
